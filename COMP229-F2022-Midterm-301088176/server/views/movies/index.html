@@ -1,0 +1,110 @@
+<!-- index.ejs, Sumi Lee, 301088176, Movie List-->
+<% include ../partials/header.ejs %>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+          <h3>Favourite movies List </h3>
+          <!-- ------------------------ -->
+          <h2>New Movie</h2>
+          <form action="/movies" method="POST">
+            <%- include('_form_fields') %>
+              <a href="/movies">Cancel</a>
+              <button type="submit">Add</button>
+          </form>
+          <!-- This is Add button -->
+          <!-- ------------------------ -->
+          <a href="" class="btn btn-primary"><i class="fa fa-plus"></i> Add a movie</a>
+          <br>
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover">
+              <thead>
+                <tr>
+                  <th><h3>Title</th><h3></th>
+                  <th class="text-center">Description</th>
+                  <th class="text-center">Released</th>
+                  <th class="text-center">Director</th>
+                  <th class="text-center">Genre</th>
+                  <th class="text-center"></th>
+                  <th class="text-center"></th>
+                </tr>
+
+                <tr>
+                    <th>Tangled</th>
+                    <th class="text-center">Rapunzel, a princess of the kingdom with magical hair who was kidnapped by Godel and lived only in a tower all her life!
+                      As she begins to be curious about the world outside the tower, a new story unfolds!</th>
+                    <th class="text-center">2010</th>
+                    <th class="text-center">Nathan Greno</th>
+                    <th class="text-center">Animation</th>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                </tr>
+
+                <tr>
+                  <th>Alice in Wonderland</th>
+                  <th class="text-center">Alice, who was an ordinary girl, arrives in a strange country as she falls into a hole in a rabbit hole. 
+                      Strange things happen with strange people in a strange country!</th>
+                  <th class="text-center">2010</th>
+                  <th class="text-center">Tim Burton</th>
+                  <th class="text-center">Animation</th>
+                  <th class="text-center"></th>
+                  <th class="text-center"></th>
+                </tr>
+
+                <tr>
+                    <th>Frozen</th>
+                    <th class="text-center">Elsa and Anna, who have to save the endangered Arendelle Kingdom, 
+                      go on a dangerous and amazing adventure with Christoff, Olaf, and Sven in search of the hidden truth of the past.</th>
+                    <th class="text-center">2013</th>
+                    <th class="text-center">Christopher James Buck</th>
+                    <th class="text-center">Animation</th>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Template Row -->
+                <% for (let count = 0; count < list.length; count++) { %>
+                <tr>
+                  <td><%= list[count].Title %></td>
+                  <td class="text-center">$<%= list[count].Description %></td>
+                  <td class="text-center">$<%= list[count].Released %></td>
+                  <td class="text-center"><%= list[count].Director %></td>
+                  <td class="text-center"><%= list[count].Genre %></td>
+
+                  <td class="text-center">
+                    <!-- ------------------------ -->
+                    <h2>Edit Movie</h2>
+                    <form action="/movies/<%= movies.id %>?_method=PUT" method="POST">
+                      <%- include('_form_fields') %>
+                        <a href="/movies/<%= author.id %>">Cancel</a>
+                        <button type="submit">Edit</button>
+                    </form>
+                    <!-- This is Edit button -->
+                    <!-- ------------------------ -->
+                  </td>
+
+                  <td class="text-center">
+                    <!-- ------------------------ -->
+                    <form method="POST" action="<%= url %>?_method=DELETE">
+                      <button type="submit">Delete</button>
+                    </form>
+                    <!-- This is Delete buttono -->
+                    <!-- ------------------------ -->
+                  </td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+           <div class="col-md-offset-1 col-md-10 text-center">
+            <ul class="pagination pagination-lg pager" id="myPager"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<% include ../partials/footer.ejs %>
+
+
